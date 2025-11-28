@@ -1,4 +1,4 @@
-package com.fccc.clientapp.network
+package com.fcc.clientapp.network
 
 import com.fcc.clientapp.model.LoginRequest
 import com.fcc.clientapp.model.LoginResponse

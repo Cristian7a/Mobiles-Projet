@@ -15,7 +15,11 @@
         android:theme="@style/Theme.ClientApp"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".FoodBusinessCategoryActivity"
+            android:exported="false" />
+        <activity
             android:name=".FoodBusinessDashboardActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
         <activity
             android:name=".ProfileActivity"

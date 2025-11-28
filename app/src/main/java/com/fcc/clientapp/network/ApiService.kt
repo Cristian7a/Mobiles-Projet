@@ -11,6 +11,8 @@ import com.fcc.clientapp.model.PastOrderDetailResponse
 import com.fcc.clientapp.model.DetailedUserResponse
 import com.fcc.clientapp.model.DashboardResponse
 import com.fcc.clientapp.model.DashboardOrderDetailResponse
+import com.fcc.clientapp.model.FoodCategoryWrapperResponse
+import com.fcc.clientapp.model.FoodCategoryResponse
 import retrofit2.Response
 import retrofit2.http.*
 import okhttp3.MultipartBody
@@ -86,4 +88,31 @@ interface ApiService {
         @Body statusBody: Map<String, String>, // { "targetStatus": "preparing" }
         @Header("Authorization") token: String
     ): Response<Unit> // Devuelve 200 OK o error
+
+    // NUEVO: Obtener Categorías de Negocio
+    @GET("a/o/fo/{foodOrgId}/fic")
+    suspend fun getCategories(
+        @Path("foodOrgId") foodOrgId: String,
+        @Header("Authorization") token: String
+    ): Response<FoodCategoryResponse>
+
+    // NUEVO: Crear Categoría (Requiere Multipart por la imagen)
+    @Multipart
+    @POST("a/o/fo/{foodOrgId}/fic")
+    suspend fun createCategory(
+        @Path("foodOrgId") foodOrgId: String,
+        @Header("Authorization") token: String,
+        @Part("name") name: RequestBody,
+        @Part("description") description: RequestBody,
+        @Part("isActive") isActive: RequestBody,
+        @Part image: MultipartBody.Part? // Optional image part
+    ): Response<FoodCategoryWrapperResponse>
+
+    // NUEVO: Eliminar Categoría
+    @DELETE("a/o/fo/{foodOrgId}/fic/{categoryId}")
+    suspend fun deleteCategory(
+        @Path("foodOrgId") foodOrgId: String,
+        @Path("categoryId") categoryId: String,
+        @Header("Authorization") token: String
+    ): Response<Unit>
 }

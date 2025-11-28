@@ -1,6 +1,6 @@
 package com.fcc.clientapp.network
 
-import com.fccc.clientapp.network.ApiService
+import com.fcc.clientapp.network.ApiService
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
